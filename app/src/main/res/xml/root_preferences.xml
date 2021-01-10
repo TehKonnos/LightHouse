@@ -1,0 +1,30 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory app:title="Λογαριασμός">
+
+        <EditTextPreference
+            app:key="username"
+            app:title="Το όνομα χρήστη σου:"
+            app:useSimpleSummaryProvider="true"
+            />
+
+        <SwitchPreferenceCompat
+            app:key="anonymous"
+            app:summaryOff="Το όνομα χρήστη δε θα φαίνεται κανονικά στην δρατηριότητες"
+            app:summaryOn="Το όνομα χρήστη θα φαίνεται στις δραστηριότητες"
+            app:title="Εμφάνιση ονόματος" />
+
+    </PreferenceCategory>
+
+
+
+    <PreferenceCategory app:title="Διαγραφή χρήστη">
+        <Preference
+            android:title="Διαγραφή Λογαριασμού"
+            android:key="@string/deleteAccount"
+            android:summary="Ο λογαριασμός σας θα διαγραφεί μόνιμα." />
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

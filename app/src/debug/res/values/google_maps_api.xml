@@ -1,0 +1,25 @@
+<resources>
+    <!--
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=CE:DF:F1:BC:92:E0:7F:2B:24:FF:A1:17:E1:B3:9E:12:F5:1B:7E:DF%3Bcom.tehkonnos.lighthouse.ui.Map
+
+    You can also add your credentials to an existing key, using these values:
+
+    Package name:
+    com.tehkonnos.lighthouse.ui.Map
+
+    SHA-1 certificate fingerprint:
+    CE:DF:F1:BC:92:E0:7F:2B:24:FF:A1:17:E1:B3:9E:12:F5:1B:7E:DF
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">YOUR_KEY_HERE</string>
+    keytool -exportcert -alias androiddebugkey -keystore "C:\Users\kzaxa\.android\debug.keystore" | "C:\Users\kzaxa\Desktop\openssl-0.9.8k_WIN32\bin\openssl" sha1 -binary | "C:\Users\kzaxa\Desktop\openssl-0.9.8k_WIN32\bin\openssl" base64
+</resources>

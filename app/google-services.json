@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "359119333102",
+    "project_id": "lighthouse-86fc4",
+    "storage_bucket": "lighthouse-86fc4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:359119333102:android:f0602972a27181f26eb5ff",
+        "android_client_info": {
+          "package_name": "com.tehkonnos.lighthouse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "359119333102-ulm4hrvj9a2lr9lep4hru9eq6jaubmn4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tehkonnos.lighthouse",
+            "certificate_hash": "cedff1bc92e07f2b24ffa117e1b39e12f51b7edf"
+          }
+        },
+        {
+          "client_id": "359119333102-9are2eueob7fm54ehm1km8jq7a0ncoqf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtvE5sQjMXnkbBFcEGXlxpYEcFTLbhfBA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "359119333102-9are2eueob7fm54ehm1km8jq7a0ncoqf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
