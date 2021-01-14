@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                 RC_SIGN_IN);
         // [END auth_fui_create_intent]
 
-    } //TODO Change logo
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
