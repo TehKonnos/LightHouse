@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
@@ -171,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()
                         .setAvailableProviders(providers)
-                        .setLogo(R.mipmap.ic_launcher_foreground) //TODO Change logo
+                        .setTheme(R.style.SplashTheme)
                         .setIsSmartLockEnabled(false)
                         .build(),
                 RC_SIGN_IN);
@@ -184,7 +185,6 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
             IdpResponse response = IdpResponse.fromResultIntent(data);
-            System.out.println("Response: "+data.toString());
 
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
