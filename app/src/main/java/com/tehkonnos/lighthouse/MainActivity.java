@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()
                         .setAvailableProviders(providers)
-                        .setLogo(R.mipmap.ic_launcher_round) //TODO Change logo
+                        .setLogo(R.mipmap.ic_launcher_foreground) //TODO Change logo
                         .setIsSmartLockEnabled(false)
                         .build(),
                 RC_SIGN_IN);
