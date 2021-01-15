@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.IdpResponse;
+//import com.firebase.ui.auth.IdpResponse;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -31,7 +31,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -121,36 +120,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void themeAndLogo() {
-        List<AuthUI.IdpConfig> providers = Collections.emptyList();
-
-        // [START auth_fui_theme_logo]
-        startActivityForResult(
-                AuthUI.getInstance()
-                        .createSignInIntentBuilder()
-                        .setAvailableProviders(providers)
-                        .setLogo(R.drawable.ic_launcher_background)      // Set logo drawable
-                        //.setTheme(R.style.MySuperAppTheme)      // Set theme
-                        .build(),
-                RC_SIGN_IN);
-        // [END auth_fui_theme_logo]
-    }
-
-    public void privacyAndTerms() {
-        List<AuthUI.IdpConfig> providers = Collections.emptyList();
-        // [START auth_fui_pp_tos]
-        startActivityForResult(
-                AuthUI.getInstance()
-                        .createSignInIntentBuilder()
-                        .setAvailableProviders(providers)
-                        .setTosAndPrivacyPolicyUrls(
-                                "https://example.com/terms.html",
-                                "https://example.com/privacy.html")
-                        .build(),
-                RC_SIGN_IN);
-        // [END auth_fui_pp_tos]
-    }
-
     @Override
     protected void onStart() {
         cUser=FirebaseAuth.getInstance().getCurrentUser();
@@ -172,7 +141,11 @@ public class MainActivity extends AppCompatActivity {
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()
                         .setAvailableProviders(providers)
-                        .setTheme(R.style.SplashTheme)
+                        .setLogo(R.drawable.lighthousewithtext)
+                        //.setTheme(R.style.SplashTheme) // Another way for Setting logo at login
+                        /*.setTosAndPrivacyPolicyUrls(  //Terms and Policy
+                                "https://example.com/terms.html",
+                                "https://example.com/privacy.html")*/
                         .setIsSmartLockEnabled(false)
                         .build(),
                 RC_SIGN_IN);
@@ -184,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
-            IdpResponse response = IdpResponse.fromResultIntent(data);
+            //IdpResponse response = IdpResponse.fromResultIntent(data);
 
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
