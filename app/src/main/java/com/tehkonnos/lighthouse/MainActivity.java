@@ -102,8 +102,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-
     public void signOut() {
         // [START auth_fui_signout]
         AuthUI.getInstance()

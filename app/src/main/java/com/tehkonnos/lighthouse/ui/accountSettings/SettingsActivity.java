@@ -1,12 +1,15 @@
 package com.tehkonnos.lighthouse.ui.accountSettings;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
@@ -17,9 +20,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.tehkonnos.lighthouse.MainActivity;
 import com.tehkonnos.lighthouse.R;
-
-import java.util.Objects;
-
 
 public class SettingsActivity extends AppCompatActivity {
     private String oldUsername;
@@ -56,10 +56,6 @@ public class SettingsActivity extends AppCompatActivity {
                 cancel();
             }
         });
-
-
-
-
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -90,24 +86,29 @@ public class SettingsActivity extends AppCompatActivity {
             assert delAccBtn != null;
             delAccBtn.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
-                public boolean onPreferenceClick(Preference preference) { //TODO Add prompt if user is sure
-                    Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser())
-                            .delete()
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    FirebaseAuth.getInstance().signOut();
-                                            Toast.makeText(getContext(), "Ο λογαριασμός σας διαγράφηκε με επιτυχια", Toast.LENGTH_SHORT).show();
-                                            requireActivity().recreate();
-
-                                }});
+                public boolean onPreferenceClick(Preference preference) {
+                    popUpBuilder();
                     return true;
+                }
+            });
+        }
+
+        private void deleteAcc(){
+            MainActivity.setSwitchPr(false);
+            MainActivity.updateUser();
+            FirebaseAuth.getInstance().getCurrentUser().delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    FirebaseAuth.getInstance().signOut();
+                    Toast.makeText(getContext(), "Ο λογαριασμός σας διαγράφηκε με επιτυχια", Toast.LENGTH_SHORT).show();
+                    getActivity().finish();
                 }
             });
         }
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+            try{
             if(username.toString().replace(" ","").equals("")){
                 Toast.makeText(getContext(),"Δεν μπορείς να αφήσεις το όνομα σου κενό!",Toast.LENGTH_SHORT).show();
                 username.setText(oldUsername);
@@ -116,6 +117,34 @@ public class SettingsActivity extends AppCompatActivity {
                 MainActivity.setUsername(username.getText());
                 MainActivity.setSwitchPr(switchAnon.isChecked());
             }
+            }catch (Exception e){
+                Log.e("onSharedPreferencedChanged: ",e.getMessage());
+            }
+        }
+
+        private void popUpBuilder(){
+            // Build an AlertDialog
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+            // Set a title for alert dialog
+            builder.setTitle("Διαγραφή Λογαριασμού");
+
+            // Ask the final question
+            builder.setMessage("Είσαι σίγουρος για αυτή την επιλογή;");
+
+            // Set the alert dialog yes button click listener
+            builder.setPositiveButton("Ναί", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    deleteAcc();
+                }
+            });
+            // Set the alert dialog no button click listener
+            builder.setNegativeButton("Ακύρωση",null);
+
+            AlertDialog dialog = builder.create();
+            // Display the alert dialog on interface
+            dialog.show();
         }
     }
 
